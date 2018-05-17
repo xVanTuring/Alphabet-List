@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import AlphabetItem from './AlphabetItem';
-import { Affix } from 'antd';
 
 const mapArrToMap = (arr) => {
   const map = new Map();
@@ -23,7 +22,6 @@ const mapArrToMap = (arr) => {
   })
   return map;
 }
-// const alphabetIndex = '#abcdefghijklmnopqrstuvwxyz'.toUpperCase().split('');
 class AlphabetList extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +33,6 @@ class AlphabetList extends Component {
     this.posKeyArr = null
   }
   registerPos = (id, top) => {
-    // console.log(id, top);
     this.mapPos.set(id, top);
   }
   handleScroll = () => {
@@ -52,7 +49,6 @@ class AlphabetList extends Component {
         }
       })
     }
-    // console.log(currentChar)
     if (currentChar !== this.state.currentChar) {
       console.log(currentChar)
       this.setState({
@@ -61,7 +57,6 @@ class AlphabetList extends Component {
     }
   }
   handleAlphaClick = (char) => {
-    // console.log(char)
     this.scroller.scrollTop = this.mapPos.get(char)
   }
   render() {
