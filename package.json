@@ -1,5 +1,5 @@
 {
-  "name": "alphabet-list",
+  "name": "react-alphabet-list",
   "version": "0.1.0",
   "private": false,
   "main": "lib/index.js",
