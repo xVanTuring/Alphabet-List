@@ -30,21 +30,17 @@ class AlphabetList extends Component {
     this.state = {
       currentChar: '#'
     }
-    this.posKeyArr = null
+    this.keyArr = null
   }
   registerPos = (id, top) => {
     this.mapPos.set(id, top);
   }
   handleScroll = () => {
-    if (this.posKeyArr == null) {
-      this.posKeyArr = Array.from(this.mapPos.keys());
-      this.posKeyArr.sort();
-    }
     let currentChar = '#';
     if (this.scroller != null) {
       // TODO: better calc
-      this.posKeyArr.forEach((key) => {
-        if (this.scroller.scrollTop + 16 >= this.mapPos.get(key)) {
+      this.keyArr.forEach((key) => {
+        if (this.scroller.scrollTop > this.mapPos.get(key)) {
           currentChar = key;
         }
       })
@@ -59,32 +55,34 @@ class AlphabetList extends Component {
     this.scroller.scrollTop = this.mapPos.get(char)
   }
   render() {
-    const { generateFn } = this.props;
-    const keys = Array.from(this.map.keys())
-    keys.sort();
+    const { generateFn, style } = this.props;
+    const defaultStyle = {
+      width: 350,
+      height: 400,
+    }
+    this.keyArr = Array.from(this.map.keys())
+    this.keyArr.sort();
     return (
       <div
         style={{
           position: 'relative',
-          width: 350,
-          height: 400,
+          ...(style ? style : {})
         }}
       >
         <div
           style={{
-            width: 350,
-            height: 400,
-            backgroundColor: '#333',
+            width: '100%',
+            height: '100%',
             overflow: 'scroll',
             overflowX: 'hidden',
             paddingRight: 12,
-            paddingLeft: 8
+            // paddingLeft: 8,
           }}
           ref={(ref) => { this.scroller = ref }}
           onScroll={this.handleScroll}
         >
           {
-            keys.map((char) => {
+            this.keyArr.map((char) => {
               if (this.map.get(char) != null) {
                 return (
                   <AlphabetItem
@@ -114,7 +112,7 @@ class AlphabetList extends Component {
           }}
         >
           {
-            keys.map(item => {
+            this.keyArr.map(item => {
               return (
                 <div
                   key={item}

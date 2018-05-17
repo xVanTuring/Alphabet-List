@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 
 class AlphabetItem extends Component {
@@ -11,7 +12,6 @@ class AlphabetItem extends Component {
       <div
         style={{
           textAlign: 'left',
-          marginTop: 8
         }}
         ref={(ref) => { this.fix = ref }}
       >
@@ -23,7 +23,8 @@ class AlphabetItem extends Component {
         </div>
         <div
           style={{
-            marginTop: 4
+            marginTop: 4,
+            marginBottom: 8
           }}
         >
           {this.props.children}
