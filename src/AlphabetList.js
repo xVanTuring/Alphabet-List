@@ -76,7 +76,6 @@ class AlphabetList extends Component {
             overflow: 'scroll',
             overflowX: 'hidden',
             paddingRight: 12,
-            // paddingLeft: 8,
           }}
           ref={(ref) => { this.scroller = ref }}
           onScroll={this.handleScroll}
@@ -87,7 +86,7 @@ class AlphabetList extends Component {
                 return (
                   <AlphabetItem
                     id={`${char}`}
-                    subfix={` (${this.map.get(char).length})`}
+                    suffix={` (${this.map.get(char).length})`}
                     key={char}
                     registerPos={this.registerPos}
                   >

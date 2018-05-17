@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-
 
 class AlphabetItem extends Component {
   componentDidMount() {
     this.props.registerPos(this.props.id, this.fix.offsetTop)
   }
   render() {
-    const { id, subfix } = this.props
+    const { id, suffix } = this.props
     return (
       <div
         style={{
@@ -19,7 +17,7 @@ class AlphabetItem extends Component {
           style={{
             color: 'white',
           }}>
-          {`${id}${subfix}`}
+          {`${id}${suffix}`}
         </div>
         <div
           style={{
