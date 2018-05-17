@@ -7,7 +7,6 @@
     "react": "^16.3.2"
   },
   "scripts": {
-    "clean": "rimraf lib",
     "build": "babel src --out-dir lib"
   },
   "devDependencies": {

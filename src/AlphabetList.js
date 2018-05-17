@@ -50,7 +50,6 @@ class AlphabetList extends Component {
       })
     }
     if (currentChar !== this.state.currentChar) {
-      console.log(currentChar)
       this.setState({
         currentChar: currentChar
       })
