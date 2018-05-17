@@ -1,4 +1,5 @@
 # React-Alphabet-List(in-Dev)
+[![NPM](https://nodei.co/npm/react-alphabet-list.png?mini=true)](https://npmjs.org/package/react-alphabet-list)
 
 ![Preview](https://raw.githubusercontent.com/xVanTuring/Alphabet-List/master/imgs/1.png)
 
