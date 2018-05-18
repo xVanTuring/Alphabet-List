@@ -25,15 +25,17 @@ const mapArrToMap = (arr) => {
 class AlphabetList extends Component {
   constructor(props) {
     super(props);
-    this.map = mapArrToMap(this.props.data);
-    this.mapPos = new Map();
+    this.map = null;
+    this.mapPos = null;
     this.state = {
       currentChar: '#'
     }
     this.keyArr = null
   }
   registerPos = (id, top) => {
-    this.mapPos.set(id, top);
+    if (this.mapPos) {
+      this.mapPos.set(id, top);
+    }
   }
   handleScroll = () => {
     let currentChar = '#';
@@ -55,7 +57,9 @@ class AlphabetList extends Component {
     this.scroller.scrollTop = this.mapPos.get(char)
   }
   render() {
-    const { generateFn, style } = this.props;
+    const { generateFn, style, data } = this.props;
+    this.map = mapArrToMap(data);
+    this.mapPos = new Map();
     const defaultStyle = {
       width: 350,
       height: 400,
