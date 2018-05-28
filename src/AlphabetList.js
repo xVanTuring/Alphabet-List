@@ -25,32 +25,11 @@ const mapArrToMap = (arr) => {
 class AlphabetList extends Component {
   constructor(props) {
     super(props);
-    this.map = null;
     this.mapPos = null;
-    this.state = {
-      currentChar: '#'
-    }
-    this.keyArr = null
   }
   registerPos = (id, top) => {
     if (this.mapPos) {
       this.mapPos.set(id, top);
-    }
-  }
-  handleScroll = () => {
-    let currentChar = '#';
-    if (this.scroller != null) {
-      // TODO: better calc
-      this.keyArr.forEach((key) => {
-        if (this.scroller.scrollTop > this.mapPos.get(key)) {
-          currentChar = key;
-        }
-      })
-    }
-    if (currentChar !== this.state.currentChar) {
-      this.setState({
-        currentChar: currentChar
-      })
     }
   }
   handleAlphaClick = (char) => {
@@ -58,14 +37,14 @@ class AlphabetList extends Component {
   }
   render() {
     const { generateFn, style, data } = this.props;
-    this.map = mapArrToMap(data);
+    const map = mapArrToMap(data);
     this.mapPos = new Map();
     const defaultStyle = {
       width: 350,
       height: 400,
     }
-    this.keyArr = Array.from(this.map.keys())
-    this.keyArr.sort();
+    const keyArr = Array.from(map.keys())
+    keyArr.sort();
     return (
       <div
         style={{
@@ -82,20 +61,19 @@ class AlphabetList extends Component {
             paddingRight: 12,
           }}
           ref={(ref) => { this.scroller = ref }}
-          onScroll={this.handleScroll}
         >
           {
-            this.keyArr.map((char) => {
-              if (this.map.get(char) != null) {
+            keyArr.map((char) => {
+              if (map.get(char) != null) {
                 return (
                   <AlphabetItem
                     id={`${char}`}
-                    suffix={` (${this.map.get(char).length})`}
+                    suffix={` (${map.get(char).length})`}
                     key={char}
                     registerPos={this.registerPos}
                   >
                     {
-                      this.map.get(char).map((item, index) => {
+                      map.get(char).map((item, index) => {
                         return generateFn(item, index);
                       })
                     }
@@ -115,7 +93,7 @@ class AlphabetList extends Component {
           }}
         >
           {
-            this.keyArr.map(item => {
+            keyArr.map(item => {
               return (
                 <div
                   key={item}
@@ -123,7 +101,7 @@ class AlphabetList extends Component {
                     fontSize: 9.5,
                     verticalAlign: 'top',
                     cursor: 'pointer',
-                    color: this.state.currentChar === item ? 'white' : '#AAA'
+                    color: '#AAA'
                   }}
                   onClick={() => { this.handleAlphaClick(item) }}
                 >
