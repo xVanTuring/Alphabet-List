@@ -36,19 +36,16 @@ class AlphabetList extends Component {
     this.scroller.scrollTop = this.mapPos.get(char)
   }
   render() {
-    const { generateFn, style, data } = this.props;
+    const { generateFn, style, data, className } = this.props;
     const map = mapArrToMap(data);
     this.mapPos = new Map();
-    const defaultStyle = {
-      width: 350,
-      height: 400,
-    }
     const keyArr = Array.from(map.keys())
     keyArr.sort();
     return (
       <div
+        className={className}
         style={{
-          position: 'relative',
+          position: 'absolute',
           ...(style ? style : {})
         }}
       >
@@ -56,8 +53,7 @@ class AlphabetList extends Component {
           style={{
             width: '100%',
             height: '100%',
-            overflow: 'scroll',
-            overflowX: 'hidden',
+            overflow: 'auto',
             paddingRight: 12,
           }}
           ref={(ref) => { this.scroller = ref }}
@@ -88,7 +84,7 @@ class AlphabetList extends Component {
           style={{
             position: 'absolute',
             top: 12,
-            right: 8,
+            right: 12,
             color: '#AAA'
           }}
         >

@@ -2,11 +2,9 @@
 [![NPM](https://nodei.co/npm/react-alphabet-list.png?mini=true)](https://npmjs.org/package/react-alphabet-list)
 
 ![Preview](https://raw.githubusercontent.com/xVanTuring/Alphabet-List/master/imgs/1.png)
-```
-  If you have any problem, just ask me
-```
+
 ## ¶Demo
-https://github.com/xVanTuring/Alphabet-List-Demo
+[Alphabet-List-Demo](https://codesandbox.io/s/alphabet-list-demo-dpwit?fontsize=14) On CodeSandBox
 ## ¶Usage
 ``` js
 const data =["anything"]
@@ -14,6 +12,7 @@ const data =["anything"]
 ``` js
 <AlphabetList
   data={data}
+  style={{}}
   generateFn={
     (item, index) => {
       return (
