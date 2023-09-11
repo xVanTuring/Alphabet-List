@@ -4,8 +4,9 @@
   "private": false,
   "homepage": "https://github.com/xVanTuring/Alphabet-List",
   "main": "lib/index.js",
-  "dependencies": {
-    "react": "^16.9.0"
+  "types": "./types/index.d.ts",
+  "peerDependencies": {
+    "react": "*"
   },
   "scripts": {
     "build": "babel src --out-dir lib"
