@@ -10,33 +10,32 @@
 
 ## ¶Props
 
-| Props                 | Type     | Description                                                                                                       |
-| --------------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| data (required)       | Array    | An array of strings or objects. _When it's an array of object, a key called 'name' must be present in the object_ |
-| keyValue              | Boolean  | A boolean that states if data is an array of objects (_true_) or an array of strings (_false_)                    |
-| style                 | Object   | A style object. Styles for the container                                                                          |
-| alphabetListStyle     | Object   | A style object. Styles for the container of the alphabet list navigation on the right.                            |
-| alphabetItemStyle     | Object   | A style object. Styles for each alphabet in the alphabet list navigation                                          |
-| generateFn (required) | Function | A function that takes each item sent in the data array and returns the html to display                            |
+| Props                 | Type     | Description                                                                                               |
+| --------------------- | -------- | --------------------------------------------------------------------------------------------------------- |
+| data (required)       | Array    | An array of strings or objects. _When it's an array of object, specify the name key of item in `nameKey`_ |
+| nameKey               | String   | A string that tells the name key of one item, `undefined` if data is string array                                    |
+| style                 | Object   | A style object. Styles for the container                                                                  |
+| alphabetListStyle     | Object   | A style object. Styles for the container of the alphabet list navigation on the right.                    |
+| alphabetItemStyle     | Object   | A style object. Styles for each alphabet in the alphabet list navigation                                  |
+| generateFn (required) | Function | A function that takes each item sent in the data array and returns the html to display                    |
 
 ## ¶Usage
 
 ```js
 const data = ["anything"];
-const keyValue = false;
 ```
 
 if array of object is to be used
 
 ```js
 const data = [{ name: "anything" }];
-const keyValue = true;
+const nameKey = "name";
 ```
 
-```js
+```jsx
 <AlphabetList
   data={data}
-  keyValue={keyValue}
+  nameKey={nameKey}
   style={{}}
   alphabetListStyle={{}}
   alphabetItemStyle={{}}

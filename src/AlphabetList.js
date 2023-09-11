@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import AlphabetItem from "./AlphabetItem";
 
-const mapArrToMap = (arr, keyValue) => {
+const mapArrToMap = (arr, nameKey) => {
   const map = new Map();
-  var Regx = /^[A-Za-z]$/;
+  const Regx = /^[A-Za-z]$/;
   arr.forEach((item) => {
-    const itemName = keyValue ? item.name : item;
+    const itemName = nameKey ? item[nameKey] : item;
     let firstChar = itemName[0];
     if (!Regx.test(firstChar)) {
       firstChar = "#";
@@ -48,11 +48,11 @@ class AlphabetList extends Component {
       style,
       data,
       className,
-      keyValue,
+      nameKey,
       alphabetItemStyle,
       alphabetListStyle,
     } = this.props;
-    const map = mapArrToMap(data, keyValue);
+    const map = mapArrToMap(data, nameKey);
     this.mapPos = new Map();
     const keyArr = Array.from(map.keys());
     keyArr.sort();
@@ -61,7 +61,7 @@ class AlphabetList extends Component {
         className={className}
         style={{
           position: "absolute",
-          ...(style ? style : {}),
+          ...(style || {}),
         }}>
         <div
           style={{
@@ -95,7 +95,7 @@ class AlphabetList extends Component {
             top: 12,
             right: 12,
             color: "#AAA",
-            ...(alphabetListStyle ? alphabetListStyle : {}),
+            ...(alphabetListStyle || {}),
           }}>
           {keyArr.map((item) => {
             return (
@@ -106,7 +106,7 @@ class AlphabetList extends Component {
                   verticalAlign: "top",
                   cursor: "pointer",
                   color: "#AAA",
-                  ...(alphabetItemStyle ? alphabetItemStyle : {}),
+                  ...(alphabetItemStyle || {}),
                 }}
                 onClick={() => {
                   this.handleAlphaClick(item);
