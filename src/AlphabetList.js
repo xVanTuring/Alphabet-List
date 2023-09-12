@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import AlphabetItem from './AlphabetItem';
+import React, { Component } from "react";
+import AlphabetItem from "./AlphabetItem";
 
-const mapArrToMap = (arr) => {
+const mapArrToMap = (arr, nameKey) => {
   const map = new Map();
-  var Regx = /^[A-Za-z]$/;
+  const Regx = /^[A-Za-z]$/;
   arr.forEach((item) => {
-    let firstChar = item[0];
+    const itemName = nameKey ? item[nameKey] : item;
+    let firstChar = itemName[0];
     if (!Regx.test(firstChar)) {
-      firstChar = '#'
+      firstChar = "#";
     } else {
       firstChar = firstChar.toUpperCase();
     }
@@ -16,99 +17,106 @@ const mapArrToMap = (arr) => {
     } else {
       const arr = map.get(firstChar);
       arr.push(item);
-      map.set(firstChar, arr)
+      map.set(firstChar, arr);
     }
-
-  })
+  });
   return map;
-}
+};
 class AlphabetList extends Component {
   constructor(props) {
     super(props);
     this.mapPos = null;
   }
+
+  state = {
+    mapPos: null,
+  };
+
   registerPos = (id, top) => {
     if (this.mapPos) {
       this.mapPos.set(id, top);
     }
-  }
+
+    this.setState({ mapPos: this.mapPos });
+  };
   handleAlphaClick = (char) => {
-    this.scroller.scrollTop = this.mapPos.get(char)
-  }
+    this.scroller.scrollTop = this.state.mapPos.get(char);
+  };
   render() {
-    const { generateFn, style, data, className } = this.props;
-    const map = mapArrToMap(data);
+    const {
+      generateFn,
+      style,
+      data,
+      className,
+      nameKey,
+      alphabetItemStyle,
+      alphabetListStyle,
+    } = this.props;
+    const map = mapArrToMap(data, nameKey);
     this.mapPos = new Map();
-    const keyArr = Array.from(map.keys())
+    const keyArr = Array.from(map.keys());
     keyArr.sort();
     return (
       <div
         className={className}
         style={{
-          position: 'absolute',
-          ...(style ? style : {})
-        }}
-      >
+          position: "absolute",
+          ...(style || {}),
+        }}>
         <div
           style={{
-            width: '100%',
-            height: '100%',
-            overflow: 'auto',
+            width: "100%",
+            height: "100%",
+            overflow: "auto",
             paddingRight: 12,
           }}
-          ref={(ref) => { this.scroller = ref }}
-        >
-          {
-            keyArr.map((char) => {
-              if (map.get(char) != null) {
-                return (
-                  <AlphabetItem
-                    id={`${char}`}
-                    suffix={` (${map.get(char).length})`}
-                    key={char}
-                    registerPos={this.registerPos}
-                  >
-                    {
-                      map.get(char).map((item, index) => {
-                        return generateFn(item, index);
-                      })
-                    }
-                  </AlphabetItem>
-                )
-              }
-            })
-          }
-
+          ref={(ref) => {
+            this.scroller = ref;
+          }}>
+          {keyArr.map((char) => {
+            if (map.get(char) != null) {
+              return (
+                <AlphabetItem
+                  id={`${char}`}
+                  suffix={` (${map.get(char).length})`}
+                  key={char}
+                  registerPos={this.registerPos}>
+                  {map.get(char).map((item, index) => {
+                    return generateFn(item, index);
+                  })}
+                </AlphabetItem>
+              );
+            }
+          })}
         </div>
         <div
           style={{
-            position: 'absolute',
+            position: "absolute",
             top: 12,
             right: 12,
-            color: '#AAA'
-          }}
-        >
-          {
-            keyArr.map(item => {
-              return (
-                <div
-                  key={item}
-                  style={{
-                    fontSize: 9.5,
-                    verticalAlign: 'top',
-                    cursor: 'pointer',
-                    color: '#AAA'
-                  }}
-                  onClick={() => { this.handleAlphaClick(item) }}
-                >
-                  {item}
-                </div>
-              )
-            })
-          }
+            color: "#AAA",
+            ...(alphabetListStyle || {}),
+          }}>
+          {keyArr.map((item) => {
+            return (
+              <div
+                key={item}
+                style={{
+                  fontSize: 9.5,
+                  verticalAlign: "top",
+                  cursor: "pointer",
+                  color: "#AAA",
+                  ...(alphabetItemStyle || {}),
+                }}
+                onClick={() => {
+                  this.handleAlphaClick(item);
+                }}>
+                {item}
+              </div>
+            );
+          })}
         </div>
       </div>
-
     );
   }
 }
