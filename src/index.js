@@ -1,3 +1,3 @@
-import AlphabetList from './AlphabetList';
+import AlphabetList from "./AlphabetList";
 
 export default AlphabetList;

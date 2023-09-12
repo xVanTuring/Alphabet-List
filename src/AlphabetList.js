@@ -62,7 +62,8 @@ class AlphabetList extends Component {
         style={{
           position: "absolute",
           ...(style || {}),
-        }}>
+        }}
+      >
         <div
           style={{
             width: "100%",
@@ -72,7 +73,8 @@ class AlphabetList extends Component {
           }}
           ref={(ref) => {
             this.scroller = ref;
-          }}>
+          }}
+        >
           {keyArr.map((char) => {
             if (map.get(char) != null) {
               return (
@@ -80,7 +82,8 @@ class AlphabetList extends Component {
                   id={`${char}`}
                   suffix={` (${map.get(char).length})`}
                   key={char}
-                  registerPos={this.registerPos}>
+                  registerPos={this.registerPos}
+                >
                   {map.get(char).map((item, index) => {
                     return generateFn(item, index);
                   })}
@@ -96,7 +99,8 @@ class AlphabetList extends Component {
             right: 12,
             color: "#AAA",
             ...(alphabetListStyle || {}),
-          }}>
+          }}
+        >
           {keyArr.map((item) => {
             return (
               <div
@@ -110,7 +114,8 @@ class AlphabetList extends Component {
                 }}
                 onClick={() => {
                   this.handleAlphaClick(item);
-                }}>
+                }}
+              >
                 {item}
               </div>
             );

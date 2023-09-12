@@ -13,7 +13,7 @@
 | Props                 | Type     | Description                                                                                               |
 | --------------------- | -------- | --------------------------------------------------------------------------------------------------------- |
 | data (required)       | Array    | An array of strings or objects. _When it's an array of object, specify the name key of item in `nameKey`_ |
-| nameKey               | String   | A string that tells the name key of one item, `undefined` if data is string array                                    |
+| nameKey               | String   | A string that tells the name key of one item, `undefined` if data is string array                         |
 | style                 | Object   | A style object. Styles for the container                                                                  |
 | alphabetListStyle     | Object   | A style object. Styles for the container of the alphabet list navigation on the right.                    |
 | alphabetItemStyle     | Object   | A style object. Styles for each alphabet in the alphabet list navigation                                  |
