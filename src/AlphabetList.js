@@ -100,11 +100,13 @@ class AlphabetList extends Component {
             color: "#AAA",
             ...(alphabetListStyle || {}),
           }}
+          className="alphabet-selector"
         >
           {keyArr.map((item) => {
             return (
               <div
                 key={item}
+                className="alphabet-selector-item"
                 style={{
                   fontSize: 9.5,
                   verticalAlign: "top",

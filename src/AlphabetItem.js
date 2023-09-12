@@ -8,6 +8,7 @@ class AlphabetItem extends Component {
     const { id, suffix } = this.props;
     return (
       <div
+        className="alphabet-group"
         style={{
           textAlign: "left",
         }}
@@ -19,6 +20,7 @@ class AlphabetItem extends Component {
           style={{
             color: "white",
           }}
+          className="alphabet-group-title"
         >
           {`${id}${suffix}`}
         </div>
@@ -27,6 +29,7 @@ class AlphabetItem extends Component {
             marginTop: 4,
             marginBottom: 8,
           }}
+          className="alphabet-group-children-wrapper"
         >
           {this.props.children}
         </div>
